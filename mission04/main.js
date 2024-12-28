@@ -17,10 +17,8 @@ let article = await createArticle({
 });
 console.log("create article: ", article);
 
-article = await patchArticle(1416, {
-  title: "5기 파트2 팀 배정 안내 (민지영)",
+article = await patchArticle(1487, {
   content: `3팀 (류제천 멘토님) : 민지영,김희성,신진호,김민희,김승우`,
-  image: "img-url-1",
 });
 console.log("patch article: ", article);
 
