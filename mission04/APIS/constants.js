@@ -1,9 +1,4 @@
 export const REQUIRED_FIELDS = {
-  GET: [
-    ["page", "number"],
-    ["pageSize", "number"],
-    ["keyword", "string"],
-  ],
   POST: {
     articles: [
       ["title", "string"],
@@ -34,9 +29,4 @@ export const REQUIRED_FIELDS = {
       ["images", "object"],
     ],
   },
-};
-
-export const INIT_GET_PARAMS = {
-  page: 1,
-  pageSize: 1000,
 };
