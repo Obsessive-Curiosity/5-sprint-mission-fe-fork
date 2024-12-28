@@ -59,7 +59,7 @@ const patchedProductData = {
 let patchedProduct = await patchProduct(713, patchedProductData);
 console.log("patch product: ", patchedProduct);
 
-delete deleteProduct(714);
+deleteProduct(714);
 
 product = await getProduct(713);
 console.log("get product: ", product);
