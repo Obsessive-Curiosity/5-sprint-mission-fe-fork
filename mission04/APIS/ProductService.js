@@ -1,7 +1,7 @@
 import apiMission from "./axiosDefault.js";
 import { isEmpty } from "./checkError.js";
 import { REQUIRED_FIELDS } from "./constants.js";
-import { verifyData } from "./checkError.js";
+import { verifyData, verifyRequiredFields } from "./checkError.js";
 
 const endPoint = "products";
 
@@ -40,7 +40,8 @@ export const getProduct = async (id) => {
 
 export const createProduct = async (data) => {
   // 상품 등록
-  const fields = REQUIRED_FIELDS["POST"][endPoint]; // method에 해당하는 필수 필드 가져오기
+  const fields = REQUIRED_FIELDS[endPoint]; // 리소스의 필수 필드 가져오기
+  verifyRequiredFields(fields, data); // 필수 필드 확인
   verifyData(fields, data); // data 검증
 
   try {
@@ -55,7 +56,7 @@ export const createProduct = async (data) => {
 
 export const patchProduct = async (id, data) => {
   // 게시글 수정
-  const fields = REQUIRED_FIELDS["PATCH"][endPoint]; // method에 해당하는 필수 필드 가져오기
+  const fields = REQUIRED_FIELDS[endPoint]; // 리소스의 필수 필드 가져오기
   verifyData(fields, data); // data 검증
 
   try {
