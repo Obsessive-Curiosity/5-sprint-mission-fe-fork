@@ -1,4 +1,3 @@
-import { getArticleList, getArticle, createArticle, patchArticle, deleteArticle } from "./APIS/articleService.js";
 import { getProductList, getProduct, createProduct, patchProduct, deleteProduct } from "./APIS/productService.js";
 
 // articles
@@ -47,14 +46,10 @@ let product = await createProduct(productData);
 console.log("create product: ", product);
 
 const patchedProductData = {
-  name: "도서) 리팩토링 2판 / 가격 수정",
-  description: "",
   price: 40000,
   manufacturer: "한빛미디어",
-  tags: ["자바스크립트", "리팩토링", "도서"],
-  images: ["이미지-url-1", "이미지-url-2"],
 };
-let patchedProduct = await patchProduct(713, patchedProductData);
+let patchedProduct = await patchProduct(731, patchedProductData);
 console.log("patch product: ", patchedProduct);
 
 deleteProduct(714);

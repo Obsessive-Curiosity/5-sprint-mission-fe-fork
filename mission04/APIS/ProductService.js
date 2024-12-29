@@ -1,4 +1,6 @@
 // 상품 APIs
+import Service from "./service.js";
+
 const endPoint = "products";
 const ProductService = new Service(endPoint); // 상품 서비스 객체 생성
 
