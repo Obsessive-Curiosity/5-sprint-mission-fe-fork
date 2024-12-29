@@ -1,5 +1,5 @@
-import { getArticleList, getArticle, createArticle, patchArticle, deleteArticle } from "./APIS/ArticleService.js";
-import { getProductList, getProduct, createProduct, patchProduct, deleteProduct } from "./APIS/ProductService.js";
+import { getArticleList, getArticle, createArticle, patchArticle, deleteArticle } from "./APIS/articleService.js";
+import { getProductList, getProduct, createProduct, patchProduct, deleteProduct } from "./APIS/productService.js";
 
 // articles
 let articleList = await getArticleList({
