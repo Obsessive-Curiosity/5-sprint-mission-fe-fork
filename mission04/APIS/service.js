@@ -1,4 +1,4 @@
-import apiMission from "./axiosDefault.js";
+import sprintApi from "./axiosDefault.js";
 import { isEmpty } from "./checkError.js";
 import { REQUIRED_FIELDS } from "./constants.js";
 import { verifyData, verifyRequiredFields } from "./checkError.js";
@@ -26,7 +26,7 @@ class Service {
     initParams(params); // 파라미터 값이 없을 시 초기화
 
     const url = this.endPoint;
-    const response = await apiMission.get(url, { params });
+    const response = await sprintApi.get(url, { params });
     const result = response.data;
 
     return result;
@@ -35,7 +35,7 @@ class Service {
   getResource = async (id) => {
     // 리소스 상세 조회
     const url = this.endPoint + `/${id}`;
-    const response = await apiMission.get(url);
+    const response = await sprintApi.get(url);
     const result = response.data;
 
     return result;
@@ -49,7 +49,7 @@ class Service {
 
     try {
       const url = this.endPoint;
-      const response = await apiMission.post(url, data);
+      const response = await sprintApi.post(url, data);
       const result = response.data;
       return result;
     } catch (error) {
@@ -64,7 +64,7 @@ class Service {
 
     try {
       const url = this.endPoint + `/${id}`;
-      const response = await apiMission.patch(url, data);
+      const response = await sprintApi.patch(url, data);
       const result = response.data;
       return result;
     } catch (error) {
@@ -76,7 +76,7 @@ class Service {
     // 리소스 삭제
     try {
       const url = this.endPoint + `/${id}`;
-      await apiMission.delete(url);
+      await sprintApi.delete(url);
     } catch (error) {
       throw new Error(error.message);
     }
