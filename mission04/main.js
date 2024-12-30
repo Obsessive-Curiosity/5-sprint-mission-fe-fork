@@ -24,7 +24,7 @@ console.log("patch article: ", article);
 
 deleteArticle(1416);
 
-article = await getArticle(1416);
+article = await getArticle(1528);
 console.log("get article: ", article);
 
 // products
@@ -53,7 +53,7 @@ const patchedProductData = {
 let patchedProduct = await patchProduct(731, patchedProductData);
 console.log("patch product: ", patchedProduct);
 
-deleteProduct(714);
+await deleteProduct(714);
 
 product = await getProduct(713);
 console.log("get product: ", product);
