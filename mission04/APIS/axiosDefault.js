@@ -1,6 +1,18 @@
 import axios from "axios";
 
-const apiDefault = (baseURL) => {
+const instance = {};
+
+const axiosDefault = (baseURL) => {
+  if (!instance[baseURL]) {
+    const axiosInstance = createAxiosInstance(baseURL);
+    requestInterceptor(axiosInstance);
+    responseInterceptor(axiosInstance);
+    instance[baseURL] = axiosInstance;
+  }
+  return instance[baseURL];
+};
+
+const createAxiosInstance = (baseURL) => {
   return axios.create({
     baseURL,
     headers: {
@@ -21,8 +33,8 @@ const requestInterceptor = (axiosInstance) => {
     },
     (error) => {
       // 요청 인터셉터에서 발생한 에러 처리
-      console.error("Request interceptor error:", error); // 요청 실패 시 에러를 전달
-      return Promise.reject(error);
+      console.error("Request interceptor error:", error);
+      return Promise.reject(error); // 요청 실패 시 에러를 전달
     }
   );
 };
@@ -47,8 +59,10 @@ const responseInterceptor = (axiosInstance) => {
   );
 };
 
-const apiMission = apiDefault("https://sprint-mission-api.vercel.app/");
-requestInterceptor(apiMission);
-responseInterceptor(apiMission);
+// baseUrl로 axiosInstance 생성
+axiosDefault("https://sprint-mission-api.vercel.app/");
 
-export default apiMission;
+// axiosInstance 추출
+const sprintApi = instance["https://sprint-mission-api.vercel.app/"];
+
+export default sprintApi;
