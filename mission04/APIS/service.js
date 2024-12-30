@@ -1,4 +1,4 @@
-import sprintApi from "./axiosDefault.js";
+import { sprintApi } from "./axiosDefault.js";
 import { isEmpty } from "./checkError.js";
 import { REQUIRED_FIELDS } from "./constants.js";
 import { verifyData, verifyRequiredFields } from "./checkError.js";

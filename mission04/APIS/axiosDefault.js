@@ -63,6 +63,4 @@ const responseInterceptor = (axiosInstance) => {
 axiosDefault("https://sprint-mission-api.vercel.app/");
 
 // axiosInstance 추출
-const sprintApi = instance["https://sprint-mission-api.vercel.app/"];
-
-export default sprintApi;
+export const sprintApi = instance["https://sprint-mission-api.vercel.app/"];
