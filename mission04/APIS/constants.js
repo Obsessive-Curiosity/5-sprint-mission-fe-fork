@@ -13,3 +13,7 @@ export const REQUIRED_FIELDS = {
     ["images", "object"],
   ],
 };
+
+export const BASE_URL = {
+  sprint: "https://sprint-mission-api.vercel.app/",
+};

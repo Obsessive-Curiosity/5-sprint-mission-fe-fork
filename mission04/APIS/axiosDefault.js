@@ -1,7 +1,7 @@
 import axios from "axios";
+import { BASE_URL } from "./constants.js";
 
 const instance = {};
-
 const axiosDefault = (baseURL) => {
   if (!instance[baseURL]) {
     const axiosInstance = createAxiosInstance(baseURL);
@@ -60,7 +60,7 @@ const responseInterceptor = (axiosInstance) => {
 };
 
 // baseUrl로 axiosInstance 생성
-axiosDefault("https://sprint-mission-api.vercel.app/");
+axiosDefault(BASE_URL.sprint);
 
 // axiosInstance 추출
-export const sprintApi = instance["https://sprint-mission-api.vercel.app/"];
+export const sprintApi = instance[BASE_URL.sprint];
