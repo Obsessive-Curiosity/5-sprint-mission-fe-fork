@@ -46,10 +46,14 @@ const responseInterceptor = (axiosInstance) => {
     (error) => {
       if (error.response) {
         if (error.response.status === 404) {
-          console.error("404 에러: 리소스를 찾을 수 없습니다. 이미 삭제되었을 수 있습니다.");
+          console.error(
+            "404 에러: 리소스를 찾을 수 없습니다. 이미 삭제되었을 수 있습니다."
+          );
           return Promise.resolve(null); // null 반환 또는 다른 값으로 처리
         }
-        console.error(`에러 응답: ${error.response.status} - ${error.response.statusText}`);
+        console.error(
+          `에러 응답: ${error.response.status} - ${error.response.statusText}`
+        );
       } else if (error.request) {
         console.error("요청은 전송되었으나 응답을 받지 못했습니다.");
       } else {
