@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import Input from "../../../common/components/Input";
 import AuthButton from "../../../common/components/AuthButton";
+import AuthSNS from "../../Auth/Components/AuthSNS";
 import {
   isEmpty,
   isEmail,
@@ -11,8 +12,6 @@ import {
   passwordErrorMessage,
 } from "../../../common/constants/inputErrorMessage.js";
 import logo from "../../../assets/logo/logo.png";
-import kakao from "../../../assets/sns-login/kakao.png";
-import google from "../../../assets/sns-login/google.png";
 import { useNavigate } from "react-router-dom";
 
 const emailIsValid = (inputValue) =>
@@ -89,23 +88,7 @@ export default function Login() {
         </AuthButton>
       </form>
 
-      <div className="flex justify-between items-center py-[16px] px-[24px] my-[24px] bg-[#E6F2FF] rounded-[8px]">
-        <p className="text-[#1F2937] text-[1rem] leading-[24px] font-medium">
-          간편 로그인하기
-        </p>
-        <div className="flex gap-[16px]">
-          <img
-            src={google}
-            alt="구글 로그인"
-            className="w-[42px] h-[42px] hover:cursor-pointer"
-          />
-          <img
-            src={kakao}
-            alt="카카오 로그인"
-            className="w-[42px] h-[42px] hover:cursor-pointer"
-          />
-        </div>
-      </div>
+      <AuthSNS />
 
       <p className="flex gap-[4px] justify-center mb-[350px] text-[0.9375rem] text-[#1F2937] font-medium leading-[18px] ">
         <p>판다마켓이 처음이신가요?</p>
