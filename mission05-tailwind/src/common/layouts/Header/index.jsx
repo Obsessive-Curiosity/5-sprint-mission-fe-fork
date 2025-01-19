@@ -1,4 +1,4 @@
-import Button from "../../components/Button-1";
+import Button from "../../components/Button";
 import logoImage from "../../../assets/logo/logo-img.png";
 import logoTitle from "../../../assets/logo/logo-title.png";
 import { useNavigate } from "react-router-dom";

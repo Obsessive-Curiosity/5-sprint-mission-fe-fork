@@ -1,7 +1,7 @@
 import { useEffect, useState, memo } from "react";
 
 const InputField = memo(function InputField(props) {
-  const { id, type, name, isValid, errorMessage } = props;
+  const { id, type, name, onInputChange, isValid, errorMessage } = props;
   const [inputValue, setInputValue] = useState("");
   const [isError, setIsError] = useState(false);
   const [didEdit, setDidEdit] = useState(false);
@@ -9,6 +9,7 @@ const InputField = memo(function InputField(props) {
   const handleBlur = () => setDidEdit(true); // focus 해제시 오류메시지 보여줌
   const handleChange = (e) => {
     setInputValue(() => e.target.value);
+    onInputChange();
     setDidEdit(false);
   };
 

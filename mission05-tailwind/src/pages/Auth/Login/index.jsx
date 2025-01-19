@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import InputField from "../../../common/components/InputField";
+import AuthButton from "../../../common/components/AuthButton/index.jsx";
 import {
   emailErrorMessage,
   passwordErrorMessage,
@@ -14,36 +15,43 @@ const validationRules = {
 };
 
 export default function Login() {
+  const formRef = useRef(null);
   const [isFormValid, setIsFormValid] = useState(false);
+
+  const validateForm = () => {
+    const formData = new FormData(formRef.current);
+    const isValid = Object.entries(validationRules).every(
+      ([field, validationFn]) => validationFn(formData.get(field)) // 수정된 부분
+    );
+    console.log("next isFormValid: ", isFormValid);
+    setIsFormValid(isValid);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData.entries());
-
-    const isValidInput = Object.entries(validationRules).every(
-      ([field, validationFn]) => validationFn(data[field])
-    );
-    setIsFormValid(isValidInput);
 
     if (!isFormValid) {
       console.log("submit되지 못함!");
       return;
     }
 
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData.entries());
+
     console.log(data);
+    // 폼 제출 로직
     e.target.reset();
   };
 
   return (
     <>
       <h1>로그인</h1>
-      <form onSubmit={handleSubmit}>
+      <form ref={formRef} onSubmit={handleSubmit}>
         <InputField
           id="email"
           type="email"
           name="email"
+          onInputChange={validateForm}
           isValid={emailIsValid}
           errorMessage={emailErrorMessage}
         />
@@ -51,10 +59,13 @@ export default function Login() {
           id="password"
           type="password"
           name="password"
+          onInputChange={validateForm}
           isValid={passwordValid}
           errorMessage={passwordErrorMessage}
         />
-        <button type="submit">로그인</button>
+        <AuthButton type="submit" isFormValid={isFormValid}>
+          로그인
+        </AuthButton>
       </form>
     </>
   );
