@@ -4,6 +4,7 @@ import Header from "./common/layouts/Header";
 import Intro from "./pages/Intro";
 import Items from "./pages/Items";
 import Login from "./pages/Auth/Login";
+import Signup from "./pages/Auth/SignUp";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<Intro />} />
         <Route path="/items" element={<Items />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
       </Routes>
       <Footer />
     </Router>
