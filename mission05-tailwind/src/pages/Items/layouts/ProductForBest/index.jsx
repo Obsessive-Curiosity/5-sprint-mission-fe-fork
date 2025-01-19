@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { getProductList } from "../../../apis/productService";
-import useFetch from "../../../common/hooks/useFetch";
-import useDeviceType from "../../../common/hooks/useDeviceType";
+import { getProductList } from "../../../../apis/productService";
+import useFetch from "../../../../common/hooks/useFetch";
+import useDeviceType from "../../../../common/hooks/useDeviceType";
 import Product from "../../components/Product";
 import ProductSkeleton from "../../components/ProductSkeleton";
-import { SORT_TYPE } from "../../../common/components/ProductFilter";
+import { SORT_TYPE } from "../../../../common/components/ProductFilter";
 import _ from "lodash";
 
 const PAGE_SIZE_BY_DEVICE_TYPE = {

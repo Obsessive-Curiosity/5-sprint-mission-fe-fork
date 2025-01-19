@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import { getProductList } from "../../../apis/productService";
-import useFetch from "../../../common/hooks/useFetch";
-import useDeviceType from "../../../common/hooks/useDeviceType";
+import { getProductList } from "../../../../apis/productService";
+import useFetch from "../../../../common/hooks/useFetch";
+import useDeviceType from "../../../../common/hooks/useDeviceType";
 import Product from "../../components/Product";
-import ProductSearch from "../../../common/components/ProductSearch";
-import ProductFilter from "../../../common/components/ProductFilter";
+import ProductSearch from "../../../../common/components/ProductSearch";
+import ProductFilter from "../../../../common/components/ProductFilter";
 import ProductSkeleton from "../../components/ProductSkeleton";
-import Button from "../../../common/components/Button";
+import Button from "../../../../common/components/Button";
 import Pagination from "../../components/Pagination";
-import { SORT_TYPE } from "../../../common/components/ProductFilter";
+import { SORT_TYPE } from "../../../../common/components/ProductFilter";
 import _ from "lodash";
 
 const PAGE_SIZE_BY_DEVICE_TYPE = {

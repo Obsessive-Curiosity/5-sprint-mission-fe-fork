@@ -1,5 +1,5 @@
 import PaginationItem from "../PaginationItem";
-import arrowIcon from "../../../assets/pagination/arrow_left.png";
+import arrowIcon from "../../../../assets/pagination/arrow_left.png";
 import { useEffect, useState } from "react";
 
 const length = 5;

@@ -1,14 +1,21 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Footer from "./common/layouts/Footer";
-import Header from "./common/layouts/Header-2";
-import ItemsPage from "./ItemsPage";
+import Header from "./common/layouts/Header";
+import Intro from "./pages/Intro";
+import Items from "./pages/Items";
+import Login from "./pages/Auth/Login";
 
 function App() {
   return (
-    <>
+    <Router>
       <Header />
-      <ItemsPage />
+      <Routes>
+        <Route path="/" element={<Intro />} />
+        <Route path="/items" element={<Items />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
       <Footer />
-    </>
+    </Router>
   );
 }
 

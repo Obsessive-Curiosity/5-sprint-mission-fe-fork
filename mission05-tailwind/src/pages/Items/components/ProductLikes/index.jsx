@@ -1,4 +1,4 @@
-import heartIcon from "../../../assets/likes/ic_heart.png";
+import heartIcon from "../../../../assets/likes/ic_heart.png";
 
 export default function ProductLikes({ favoriteCount }) {
   return (

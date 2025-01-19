@@ -1,5 +1,5 @@
 import ProductLikes from "../ProductLikes";
-import defaultImage from "../../../assets/product/img_default.png";
+import defaultImage from "../../../../assets/product/img_default.png";
 
 const formatPrice = (price) => new Intl.NumberFormat("ko-KR").format(price);
 
