@@ -42,12 +42,14 @@ export default function Registration() {
       return;
     }
 
-    const formData = new FormData(e.target); // formRef.current가 null이 아닌 경우에만 생성
-    const data = Object.fromEntries(formData.entries());
-
     console.log(data);
     // 폼 제출 로직
-    e.target.reset();
+    setData({
+      name: "",
+      description: "",
+      price: 0,
+      tags: [],
+    });
   };
 
   // 태그 엔터 눌렀을 때 반응
@@ -93,6 +95,7 @@ export default function Registration() {
           id="name"
           type="text"
           name="name"
+          placeholder="상품명을 입력해주세요"
           initValue=""
           data={data}
           onChange={setData}
@@ -105,6 +108,7 @@ export default function Registration() {
           label="상품소개"
           id="description"
           name="description"
+          placeholder="상품 소개를 입력해주세요"
           initValue=""
           data={data}
           onChange={setData}
@@ -120,6 +124,7 @@ export default function Registration() {
           id="price"
           type="text"
           name="price"
+          placeholder="판매 가격을 입력해주세요"
           initValue={0}
           data={data}
           onChange={setData}
@@ -133,6 +138,7 @@ export default function Registration() {
           id="tags"
           type="text"
           name="tags"
+          placeholder="태그를 입력해주세요"
           handleKeyDown={handleKeyDown}
           isValid={(value) => hasMaxLength(value, 5)} // 5자 이내
           errorMessage={tagErrorMessage}

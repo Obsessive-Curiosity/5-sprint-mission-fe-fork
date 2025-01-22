@@ -8,7 +8,7 @@ const TagItem = memo(function TagItem({ children, onDelete }) {
       <img
         src={iconX}
         alt="태그 삭제"
-        className="w-[24px] h-[24px]"
+        className="w-[24px] h-[24px] hover:cursor-pointer"
         onClick={onDelete}
       />
     </div>
