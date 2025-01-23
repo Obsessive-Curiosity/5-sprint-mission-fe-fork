@@ -57,7 +57,7 @@ const Textarea = memo(function Textarea({
             value={data[name]}
             onBlur={handleBlur}
             onChange={handleChange}
-            className="w-full appearance-none border-none p-0 outline-none focus:outline-none focus:ring-0 bg-transparent resize-none"
+            className="w-full h-[282px] appearance-none border-none p-0 outline-none focus:outline-none focus:ring-0 bg-transparent resize-none"
           />
         </div>
       </div>
