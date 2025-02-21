@@ -1,8 +1,7 @@
 // 상품 APIs
-import Service from "./service.js";
-
+import LocalService from "./LocalService.js";
 const endPoint = "products";
-const ProductService = new Service(endPoint);
+const ProductService = new LocalService(endPoint);
 
 // 상품 API 메서드 내보내기
 export const {

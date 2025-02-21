@@ -17,8 +17,11 @@ import {
   passwordConfirmErrorMessage,
 } from "../../../common/constants/inputErrorMessage.js";
 import logo from "../../../assets/logo/logo.png";
+import { signup } from "../../../apis/authService.js";
+import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
+  const nav = useNavigate();
   const modalRef = useRef(null);
   const [errorMessage, setErrorMessage] = useState("");
   const [data, setData] = useState({
@@ -34,7 +37,7 @@ export default function Signup() {
     passwordConfirm: false,
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const formValid = Object.values(isFormValid).every(
@@ -42,11 +45,20 @@ export default function Signup() {
     );
     if (!formValid) return;
 
-    // 폼 제출 로직
-    setErrorMessage("비밀번호가 일치하지 않습니다");
-    modalRef.current.open();
+    const { email, nick, password } = data;
+    const bodyData = { email, nick, password };
 
-    console.log(data);
+    try {
+      await signup(bodyData);
+      console.log("회원가입 성공");
+      nav("/login");
+    } catch (error) {
+      console.error("Error: ", error);
+
+      setErrorMessage(error.customMessage || "회원가입에 실패했습니다.");
+      modalRef.current.open();
+    }
+
     e.target.reset();
   };
 

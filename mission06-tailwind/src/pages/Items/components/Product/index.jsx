@@ -1,14 +1,16 @@
 import ProductLikes from "../ProductLikes";
 import defaultImage from "../../../../assets/product/img_default.png";
+import { useNavigate } from "react-router-dom";
 
 const formatPrice = (price) => new Intl.NumberFormat("ko-KR").format(price);
 
 export default function Product({ data }) {
-  const { images, name, price, favoriteCount } = data;
+  const { images, name, price, favoriteCount, id } = data;
+  const nav = useNavigate();
 
-  const handleImageError = (e) => {
-    e.target.src = defaultImage;
-  };
+  const handleClick = () => nav(`/product/${id}`);
+
+  const handleImageError = (e) => (e.target.src = defaultImage);
 
   return (
     <div className="w-full flex flex-col">
@@ -16,6 +18,7 @@ export default function Product({ data }) {
         <img
           src={images?.[0] ?? defaultImage}
           alt={name || "상품 기본 이미지"}
+          onClick={handleClick}
           onError={handleImageError}
           className="w-full h-full mb-[16px] cursor-pointer object-cover transition-transform duration-300 ease-in-out transform group-hover:scale-110"
         />

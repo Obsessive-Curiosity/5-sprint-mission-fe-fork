@@ -19,9 +19,7 @@ export default function useFetch(fetchFunction, params) {
         setError(err.message);
       } finally {
         const loadingEndTime = Date.now(); // 로딩 종료 시간 기록
-
         // skeleton을 일정시간 보여주기 위한 작업
-
         const loadingDuration = loadingEndTime - loadingStartTime; // 소요된 시간 계산
         if (loadingDuration < 2000) {
           // 2000ms 이하일 경우 추가 대기

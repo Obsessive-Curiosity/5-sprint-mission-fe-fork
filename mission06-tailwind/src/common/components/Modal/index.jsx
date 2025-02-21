@@ -11,9 +11,7 @@ const Modal = forwardRef(function Modal({ message }, ref) {
     },
   }));
 
-  const onClose = () => {
-    dialogRef.current.close();
-  };
+  const onClose = () => dialogRef.current.close();
 
   return createPortal(
     <dialog

@@ -12,15 +12,26 @@ import { SORT_TYPE } from "../../../../common/components/ProductFilter";
 import _ from "lodash";
 import { useNavigate } from "react-router-dom";
 
-const PAGE_SIZE_BY_DEVICE_TYPE = {
+interface IdeviceType {
+  [key: string]: { pageSize: number; ui: string };
+}
+
+const PAGE_SIZE_BY_DEVICE_TYPE: IdeviceType = {
   PC: { pageSize: 10, ui: "grid-cols-5" },
   Tablet: { pageSize: 6, ui: "grid-cols-3" },
   Mobile: { pageSize: 4, ui: "grid-cols-2" },
 };
 
+interface Iquery {
+  page: number;
+  pageSize: number;
+  orderBy: string;
+  keyword: string;
+}
+
 export default function ProductForSale() {
-  const deviceType = useDeviceType();
-  const [query, setQuery] = useState({
+  const deviceType: string = useDeviceType();
+  const [query, setQuery] = useState<Iquery>({
     page: 1,
     pageSize: PAGE_SIZE_BY_DEVICE_TYPE[deviceType].pageSize,
     orderBy: SORT_TYPE.RECENT.key,

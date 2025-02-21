@@ -52,14 +52,29 @@ export default function ProductForBest() {
       <div
         className={`grid gap-[24px] tb:gap-[10px] md:gap-[0px] ${PAGE_SIZE_BY_DEVICE_TYPE[deviceType].ui}`}
       >
-        {!isLoading &&
-          productList
-            .slice(0, +query.pageSize)
-            .map((data, idx) => <Product key={idx} data={data} />)}
-        {isLoading &&
-          Array.from({ length: query.pageSize }, (_, i) => i + 1).map((idx) => (
-            <ProductSkeleton key={idx} />
-          ))}
+        {
+          // 데이터가 있을 때
+          !isLoading &&
+            productList.length > 0 &&
+            productList.map((data, idx) => <Product key={idx} data={data} />)
+        }
+
+        {
+          // 데이터가 없을 때
+          !isLoading && productList.length < 1 && (
+            <div className="col-span-full flex justify-center items-center">
+              <p className="text-gray-400 text-lg">상품이 없습니다.</p>
+            </div>
+          )
+        }
+
+        {
+          // 로딩중일 때
+          isLoading &&
+            Array.from({ length: query.pageSize }, (_, i) => i + 1).map(
+              (idx) => <ProductSkeleton key={idx} />
+            )
+        }
       </div>
     </section>
   );

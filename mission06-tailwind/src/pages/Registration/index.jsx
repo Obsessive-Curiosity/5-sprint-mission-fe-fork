@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Button from "../../common/components/Button";
 import Input from "../../common/components/Input";
 import Textarea from "../../common/components/Textarea/index.jsx";
 import TagItem from "./components/TagItem";
 import TagInput from "./components/TagInput/index.jsx";
+import Modal from "../../common/components/Modal/index.jsx";
 import {
   productErrorMessage,
   descriptionErrorMessage,
@@ -15,6 +16,8 @@ import {
   hasMinLength,
   isNumber,
 } from "../../common/constants/inputValidation.js";
+import { createProduct } from "../../apis/productService.js";
+import { useNavigate } from "react-router-dom";
 
 export default function Registration() {
   const [data, setData] = useState({
@@ -29,20 +32,35 @@ export default function Registration() {
     price: false,
     tags: false,
   });
+  const modalRef = useRef(null);
+  const [errorMessage, setErrorMessage] = useState("");
+  const nav = useNavigate();
 
   // form 제출용도
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // 모든 폼이 올바른 값인지 확인
     const isActive = Object.values(isFormValid).every(
       (value) => value === true
     );
     if (!isActive) {
-      console.log("모든 폼에 올바른 값을 입력해주세요!");
+      setErrorMessage("모든 폼에 올바른 값을 입력해주세요!");
+      modalRef.current.open();
       return;
     }
 
-    console.log(data);
+    // 서버로 데이터 전송
+    try {
+      await createProduct(data);
+      console.log("상품 등록 성공");
+      nav("/items");
+    } catch (error) {
+      console.error("Error: ", error);
+      setErrorMessage(error.customMessage || "상품 등록에 실패했습니다.");
+      modalRef.current.open();
+    }
+
     // 폼 제출 로직
     setData({
       name: "",
@@ -80,6 +98,8 @@ export default function Registration() {
 
   return (
     <main>
+      <Modal ref={modalRef} message={errorMessage} />
+
       <form className="flex flex-col gap-[24px] w-full max-w-screen-xl px-[24px] md:px-[16px] mx-auto mb-[160px] mt-[26px] tb:mt-[24px] md:tb-[28px]">
         <section className="flex items-center justify-between">
           <h1 className="text-[#1F2937] font-bold text-[1.25rem] leading-[32px]">

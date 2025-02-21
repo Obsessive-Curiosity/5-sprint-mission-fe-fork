@@ -13,15 +13,15 @@ const Input = memo(function Input({
   isPassword,
   ...props
 }) {
-  const { name } = props;
-  const inputRef = useRef(null);
+  const { name: string } = props;
+  const inputRef = useRef<HTMLInputElement>(null);
   const [isError, setIsError] = useState(false);
   const [didEdit, setDidEdit] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const handleBlur = () => setDidEdit(true); // focus 해제시 오류메시지 보여줌
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = name === "price" ? parseInt(e.target.value) : e.target.value;
     onChange((prevDate) => ({
       ...prevDate,
@@ -30,16 +30,20 @@ const Input = memo(function Input({
     setDidEdit(false);
   }; // input 변경될 때마다 실행
 
-  const handleClick = (e) => {
+  const handleClick = (e: React.MouseEvent<HTMLInputElement>) => {
+    if (!inputRef.current) return;
+
+    const target = e.target as HTMLInputElement;
+
     if (isPasswordVisible) {
       inputRef.current.type = "password";
-      e.target.alt = "비밀번호 미리보기";
-      e.target.src = pwHidden;
+      target.alt = "비밀번호 미리보기";
+      target.src = pwHidden;
       setIsPasswordVisible(false); // 비밀번호 가리기 상태로 변경
     } else {
       inputRef.current.type = "text";
-      e.target.alt = "비밀번호 감추기";
-      e.target.src = pwShow;
+      target.alt = "비밀번호 감추기";
+      target.src = pwShow;
       setIsPasswordVisible(true); // 비밀번호 보기 상태로 변경
     }
   };

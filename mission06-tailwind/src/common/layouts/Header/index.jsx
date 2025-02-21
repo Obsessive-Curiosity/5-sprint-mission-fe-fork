@@ -2,6 +2,8 @@ import Button from "../../components/Button";
 import logoImage from "../../../assets/logo/logo-img.png";
 import logoTitle from "../../../assets/logo/logo-title.png";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { getUser } from "../../../apis/authService";
 
 const NAV_ITEM = {
   BOARD: { LABEL: "자유게시판", PATH: "/" },
@@ -10,8 +12,22 @@ const NAV_ITEM = {
 
 export default function Header() {
   const nav = useNavigate();
+  const [nick, setNick] = useState(null);
 
   const goHome = () => nav("/");
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const userInfo = await getUser();
+        setNick(userInfo.nick);
+      } catch (error) {
+        console.error("유저 정보를 가져오는 중 오류 발생:", error);
+      }
+    };
+
+    fetchUser();
+  });
 
   return (
     <header className="w-full bg-white border-b border-gray-300 sticky top-0 z-10">
@@ -47,7 +63,8 @@ export default function Header() {
           </nav>
         </section>
 
-        <Button onClick={() => nav("/login")}>로그인</Button>
+        {nick && <p>{nick}님 안녕하세요.</p>}
+        {!nick && <Button onClick={() => nav("/login")}>로그인</Button>}
       </div>
     </header>
   );
