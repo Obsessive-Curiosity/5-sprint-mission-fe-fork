@@ -11,7 +11,7 @@ export default function ButtonRound({
 }: ButtonProps) {
   return (
     <button
-      className={`w-full flex items-center justify-center py-3 rounded-3xl text-white ${className}`}
+      className={`w-full flex items-center justify-center py-4 rounded-3xl text-white font-semibold ${className}`}
       {...props}
     >
       {children}

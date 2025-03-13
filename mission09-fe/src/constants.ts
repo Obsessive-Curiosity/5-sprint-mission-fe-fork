@@ -24,6 +24,7 @@ export const TRANSLATE = {
   content: { label: "내용", placeholder: "내용을 입력해주세요" },
   comment: { label: "댓글", placeholder: "댓글을 입력해주세요" },
   email: { label: "이메일", placeholder: "이메일을 입력해주세요" },
+  nickname: { label: "닉네임", placeholder: "닉네임을 입력해주세요" },
   password: { label: "비밀번호", placeholder: "비밀번호를 입력해주세요" },
   passwordConfirm: {
     label: "비밀번호 확인",

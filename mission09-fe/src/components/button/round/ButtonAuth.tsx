@@ -14,11 +14,12 @@ export default function ButtonAuth({
   return (
     <ButtonRound
       type="submit"
-      className={`${
-        isValid
-          ? "bg-blue-500 cursor-pointer"
-          : "bg-gray-400 cursor-not-allowed"
-      }`}
+      className={`text-xl
+        ${
+          isValid
+            ? "bg-blue-500 cursor-pointer"
+            : "bg-gray-400 cursor-not-allowed"
+        }`}
       {...props}
     >
       {children}

@@ -7,6 +7,11 @@ import {
   FieldValues,
 } from "react-hook-form";
 
+const HEIGHT = {
+  content: 282,
+  comment: 104,
+};
+
 interface InputProps<T extends FieldValues> extends UseControllerProps<T> {
   initValue?: string;
 }
@@ -17,8 +22,10 @@ export default function Textarea<T extends FieldValues>({
 }: InputProps<T>) {
   const { field, fieldState } = useController(props);
   const { name } = props;
-  const key = name as keyof typeof TRANSLATE;
-  const { label, placeholder } = TRANSLATE[key];
+  const translateKey = name as keyof typeof TRANSLATE;
+  const heightKey = name as keyof typeof HEIGHT;
+  const { label, placeholder } = TRANSLATE[translateKey];
+  const height = HEIGHT[heightKey];
 
   return (
     <div className="w-full flex flex-col">
@@ -27,6 +34,7 @@ export default function Textarea<T extends FieldValues>({
         className="text-gray-800 font-bold text-sm md:text-lg mb-3"
       >
         {label}
+        {!initValue && name === "comment" ? " 작성" : " 수정"}
       </label>
 
       <textarea
@@ -34,6 +42,7 @@ export default function Textarea<T extends FieldValues>({
         placeholder={placeholder}
         {...field}
         defaultValue={initValue}
+        style={{ height: `${height}px` }}
         className={`bg-gray-100 px-6 py-4 rounded-xl outline ${
           fieldState.error
             ? "outline-error-red"
