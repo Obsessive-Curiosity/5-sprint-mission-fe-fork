@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes, ReactNode } from "react";
-import Button from "./ButtonRectangle";
+import Button from "./rectangle/ButtonRectangle";
 import type { SubmitContext } from "@/contexts/submit-context-factory";
 
 interface ButtonSubmitProps extends ButtonHTMLAttributes<HTMLButtonElement> {

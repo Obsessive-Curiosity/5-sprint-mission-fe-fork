@@ -1,6 +1,6 @@
 "use client";
 
-import Button from "@/components/button/ButtonRectangle";
+import Button from "@/components/button/rectangle/ButtonRectangle";
 import Link from "next/link";
 import Filter from "@/components/shared/Filter";
 import Search from "@/components/shared/Search";

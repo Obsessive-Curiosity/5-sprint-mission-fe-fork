@@ -1,6 +1,6 @@
 import Image from "next/image";
 import iconBack from "@/assets/icons/ic_back.png";
-import ButtonRound from "@/components/button/ButtonRound";
+import ButtonRound from "@/components/button/round/ButtonRound";
 import CommentForm from "@/components/form/CommentCreateForm";
 import Link from "next/link";
 import ArticleDetail from "@/components/article/list/ArticleDetail";

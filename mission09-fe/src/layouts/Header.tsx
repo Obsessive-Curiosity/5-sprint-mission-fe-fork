@@ -1,7 +1,7 @@
 import pandaFace from "@/assets/images/panda-face.png";
 import pandaMarket from "@/assets/images/panda-market.png";
 import Image from "next/image";
-import Button from "@/components/button/ButtonRectangle";
+import Button from "@/components/button/rectangle/ButtonRectangle";
 import NavBar from "@/components/header/Navbar";
 import Link from "next/link";
 
@@ -24,7 +24,7 @@ export default function Header() {
           <NavBar />
         </section>
 
-        <Link href="/login">
+        <Link href="/auth/login">
           <Button isActive={true}>로그인</Button>
         </Link>
       </div>
