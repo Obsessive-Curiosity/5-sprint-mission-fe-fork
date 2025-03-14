@@ -3,9 +3,9 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signupSchema, SignupFormSchema } from "@/schemas/formSchema";
-import InputText from "../input/InputText";
-import ButtonAuth from "../button/round/ButtonAuth";
-import Password from "../input/Password";
+import InputText from "@/components/input/Input";
+import ButtonAuth from "@/components/button/round/ButtonAuth";
+import Password from "@/components/input/Password";
 
 export default function SignupForm() {
   const {

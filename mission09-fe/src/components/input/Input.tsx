@@ -7,15 +7,12 @@ import {
   FieldValues,
 } from "react-hook-form";
 
-interface InputProps<T extends FieldValues> extends UseControllerProps<T> {
-  initValue?: string;
-}
-
-export default function InputText<T extends FieldValues>({
-  initValue,
+export default function Input<T extends FieldValues>({
   ...props
-}: InputProps<T>) {
-  const { field, fieldState } = useController(props);
+}: UseControllerProps<T>) {
+  const { field, fieldState } = useController({
+    ...props,
+  });
   const { name } = props;
   const key = name as keyof typeof TRANSLATE;
   const type = name === "email" ? "email" : "text";
@@ -35,7 +32,6 @@ export default function InputText<T extends FieldValues>({
         id={name}
         placeholder={placeholder}
         {...field}
-        defaultValue={initValue}
         className={`bg-gray-100 px-6 py-4 rounded-xl outline ${
           fieldState.error
             ? "outline-error-red"

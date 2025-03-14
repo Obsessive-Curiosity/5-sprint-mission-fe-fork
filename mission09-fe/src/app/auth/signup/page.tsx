@@ -1,4 +1,4 @@
-import SignupForm from "@/components/form/SignupForm";
+import SignupForm from "@/components/form/auth/SignupForm";
 import SNSAuth from "@/components/shared/SNSAuth";
 import Link from "next/link";
 

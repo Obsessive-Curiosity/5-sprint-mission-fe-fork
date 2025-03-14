@@ -6,8 +6,8 @@ import Image from "next/image";
 import timeTracker from "@/utils/timeTracker";
 import Control from "@/components/shared/Control";
 import { useActionState, useEffect, useRef, useState } from "react";
-import ArticleCommentEditForm from "../../form/CommentEditForm";
-import deleteArticleCommentAction from "@/lib/actions/delete-article-comment.action";
+import EditCommentForm from "@/components/form/comment/EditCommentForm";
+import deleteArticleCommentAction from "@/lib/actions/comment/delete-article-comment.action";
 
 export default function CommentItem({ comment }: { comment: ArticleComment }) {
   const formRef = useRef<HTMLFormElement>(null);
@@ -15,7 +15,7 @@ export default function CommentItem({ comment }: { comment: ArticleComment }) {
     deleteArticleCommentAction,
     null
   );
-  const { id, content, author, articleId, updatedAt } = comment;
+  const { content, author, articleId, updatedAt } = comment;
   const [isEdit, setIsEdit] = useState(false);
 
   const handleEdit = () => setIsEdit(true);
@@ -35,29 +35,32 @@ export default function CommentItem({ comment }: { comment: ArticleComment }) {
         <input name="commentId" value={comment.id} hidden readOnly />
       </form>
 
-      {!isEdit && (
-        <article className="bg-[#fcfcfc] border-b border-gray-200 relative">
-          <Control onDelete={handleDelete} onEdit={handleEdit} />
-          <p className="text-gray-800 mb-6">{content}</p>
-          <section className="flex items-center gap-2 mb-2 md:mb-3">
-            <Image src={iconProfile} alt="profile" width={40} height={40} />
-            <span className="text-xs font-normal">
-              <p className="text-gray-600">{author}</p>
-              <p className="text-gray-400">{timeTracker(updatedAt)}</p>
-            </span>
+      <article className="bg-gradient-to-t from-[#FCFCFC] to-white border-b border-gray-200 relative">
+        {!isEdit && (
+          <section>
+            <Control onDelete={handleDelete} onEdit={handleEdit} />
+            <p className="text-gray-800 mb-6">{content}</p>
           </section>
-        </article>
-      )}
+        )}
 
-      {/* 댓글 수정용 폼 */}
-      {isEdit && (
-        <ArticleCommentEditForm
-          originComment={comment.content}
-          articleId={articleId}
-          commentId={id}
-          onDone={() => setIsEdit(false)}
-        />
-      )}
+        {/* 댓글 수정용 폼 */}
+        {isEdit && (
+          <EditCommentForm
+            category="article"
+            id={articleId}
+            comment={comment}
+            onDone={() => setIsEdit(false)}
+          />
+        )}
+
+        <section className="flex items-center gap-2 mb-6">
+          <Image src={iconProfile} alt="profile" width={40} height={40} />
+          <span className="text-xs font-normal">
+            <p className="text-gray-600">{author}</p>
+            <p className="text-gray-400">{timeTracker(updatedAt)}</p>
+          </span>
+        </section>
+      </article>
     </>
   );
 }

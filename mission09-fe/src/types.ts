@@ -13,6 +13,16 @@ export interface Article {
   comments?: ArticleComment[];
 }
 
+export interface Product {
+  id: string;
+  name: string;
+  price: number;
+  tags: string[];
+  createdAt: Date;
+  updatedAt: Date;
+  comments?: ProductComment[];
+}
+
 export interface BaseComment {
   id: string;
   content: string;

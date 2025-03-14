@@ -1,4 +1,4 @@
-import { deleteData } from "../apis/service.ts";
+import { deleteData } from "@/lib/apis/service.ts";
 
 export default async function deleteArticleAction(
   _: unknown,

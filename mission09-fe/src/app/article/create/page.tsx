@@ -1,4 +1,4 @@
-import ArticleForm from "@/components/form/ArticleForm";
+import ArticleForm from "@/components/form/post/ArticleForm";
 
 export default async function Page() {
   return (

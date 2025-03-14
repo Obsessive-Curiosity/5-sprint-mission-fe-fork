@@ -1,23 +1,16 @@
-import { patchData } from "../apis/service.ts";
+import { patchData } from "@/lib/apis/service.ts";
 import type { ArticleComment } from "@/types";
 
 export default async function editArticleCommentAction(
   _: unknown,
   formData: FormData
 ) {
-  const originComment = formData.get("originComment") as string;
-  const comment = formData.get("comment") as string;
+  const originComment = formData.get("originContent") as string;
+  const content = formData.get("currentContent") as string;
   const commentId = formData.get("commentId") as string;
-  const articleId = formData.get("articleId") as string;
+  const articleId = formData.get("id") as string;
 
-  if (!comment || comment.trim() === "") {
-    return {
-      status: false,
-      message: "댓글 내용이 없습니다.",
-    };
-  }
-
-  if (comment === originComment) {
+  if (content === originComment) {
     return {
       status: false,
       message: "변경된 내용이 없습니다.",
@@ -26,7 +19,7 @@ export default async function editArticleCommentAction(
 
   const isSuccess = await patchData<ArticleComment>(
     `/article/comment/${commentId}`,
-    { content: comment },
+    { content },
     [`article-detail-${articleId}`]
   );
 

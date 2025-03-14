@@ -9,7 +9,7 @@ import Control from "@/components/shared/Control";
 import { useRouter } from "next/navigation";
 import { useArticle } from "@/contexts/readonly-context-factory";
 import { useActionState, useEffect, useRef } from "react";
-import deleteArticleAction from "@/lib/actions/delete-article.action";
+import deleteArticleAction from "@/lib/actions/article/delete-article.action";
 import { useQueryClient } from "@tanstack/react-query";
 
 export default function ArticleDetail() {

@@ -1,4 +1,4 @@
-import LoginForm from "@/components/form/LoginForm";
+import LoginForm from "@/components/form/auth/LoginForm";
 import SNSAuth from "@/components/shared/SNSAuth";
 import Link from "next/link";
 

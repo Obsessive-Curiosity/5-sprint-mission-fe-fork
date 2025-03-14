@@ -1,7 +1,7 @@
 import Image from "next/image";
 import iconBack from "@/assets/icons/ic_back.png";
 import ButtonRound from "@/components/button/round/ButtonRound";
-import CommentForm from "@/components/form/CommentCreateForm";
+import CreateCommentForm from "@/components/form/comment/CreateCommentForm";
 import Link from "next/link";
 import ArticleDetail from "@/components/article/list/ArticleDetail";
 import CommentList from "@/components/article/comment/CommentList";
@@ -14,7 +14,7 @@ export default async function Page({ params }: PageIdParams) {
     <>
       <ArticleDetail />
 
-      <CommentForm articleId={id} />
+      <CreateCommentForm category="article" id={id} />
 
       <CommentList />
 

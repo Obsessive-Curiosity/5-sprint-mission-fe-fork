@@ -84,7 +84,7 @@ export default function ArticleList() {
       <section className="flex items-center justify-between mb-4 md:mb-6">
         <h1 className="text-gray-800 font-bold text-xl">게시글</h1>
         <Link href="/article/create">
-          <Button isActive={true}>글쓰기</Button>
+          <Button className="bg-primary-100 cursor-pointer">글쓰기</Button>
         </Link>
       </section>
 

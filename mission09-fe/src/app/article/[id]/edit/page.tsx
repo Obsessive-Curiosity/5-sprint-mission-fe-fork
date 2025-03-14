@@ -1,6 +1,6 @@
 "use client";
 
-import ArticleForm from "@/components/form/ArticleForm";
+import ArticleForm from "@/components/form/post/ArticleForm";
 import { useArticle } from "@/contexts/readonly-context-factory";
 
 export default function Page() {

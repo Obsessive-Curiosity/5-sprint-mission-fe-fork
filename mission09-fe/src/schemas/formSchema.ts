@@ -1,14 +1,14 @@
 import { z } from "zod";
-import { InputTextSchema } from "./inputTextSchema";
+import { commentSchema, InputSchema } from "./inputSchema";
 
-export const loginSchema = InputTextSchema.pick({
+export const loginSchema = InputSchema.pick({
   email: true,
   password: true,
 });
 
 export const signupSchema = loginSchema
   .merge(
-    InputTextSchema.pick({
+    InputSchema.pick({
       nickname: true,
       passwordConfirm: true,
     })
@@ -18,5 +18,17 @@ export const signupSchema = loginSchema
     path: ["passwordConfirm"], // passwordConfirm 필드에서 오류 발생
   });
 
+export const commentSchemaWithId = z.object({
+  inquiry: commentSchema.optional(), // 기존 commentSchema를 'inquiry'라는 키로 포함
+  comment: commentSchema.optional(), // 기존 commentSchema를 'content'라는 키로 포함
+});
+
+export const articleSchema = InputSchema.pick({
+  title: true,
+  content: true,
+});
+
 export type LoginFormSchema = z.infer<typeof loginSchema>;
 export type SignupFormSchema = z.infer<typeof signupSchema>;
+export type CommentFormSchema = z.infer<typeof commentSchemaWithId>;
+export type ArticleFormSchema = z.infer<typeof articleSchema>;

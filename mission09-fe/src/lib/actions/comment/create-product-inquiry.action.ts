@@ -1,10 +1,10 @@
-import { postData } from "../apis/service.ts";
+import { postData } from "@/lib/apis/service.ts";
 
-export default async function createArticleCommentAction(
+export default async function createProductInquiryAction(
   _: unknown,
   formData: FormData
 ) {
-  const articleId = formData.get("articleId") as string;
+  const productId = formData.get("id") as string;
   const comment = formData.get("comment") as string;
 
   if (!comment) {
@@ -15,9 +15,9 @@ export default async function createArticleCommentAction(
   }
 
   const isSuccess = await postData(
-    `/article/${articleId}/comment`,
+    `/product/${productId}/comment`,
     { content: comment },
-    [`article-detail-${articleId}`]
+    [`product-detail-${productId}`]
   );
 
   return {

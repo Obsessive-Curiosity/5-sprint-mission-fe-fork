@@ -25,7 +25,7 @@ export default function Header() {
         </section>
 
         <Link href="/auth/login">
-          <Button isActive={true}>로그인</Button>
+          <Button className="bg-primary-100 cursor-pointer">로그인</Button>
         </Link>
       </div>
     </header>
